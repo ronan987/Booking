@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".BlankFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="357dp"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/registro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Buscar"
+                android:textColor="@color/colorLight"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/hoteles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hoteles,hostales,albergues y más.."
+                android:textColor="@color/colorLight"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/txtnombre"
+                style="@style/RegisterActivityText"
+                android:drawableLeft="@drawable/ic_busqueda"
+                android:drawableTint="@color/colorLight"
+                android:hint="Destino"
+                android:textColorHint="@color/colorLight" />
+
+
+            <EditText
+                android:id="@+id/calendar"
+                style="@style/RegisterActivityText"
+                android:drawableLeft="@drawable/ic_calendar"
+                android:drawableTint="@color/colorLight"
+                android:hint="Fecha"
+                android:inputType="date" />
+
+            <EditText
+                android:id="@+id/txthabitacion"
+                style="@style/RegisterActivityText"
+                android:drawableLeft="@drawable/ic_person"
+                android:drawableTint="@color/colorLight"
+                android:hint="habitacion"
+                android:inputType="text" />
+
+            <Button
+                android:id="@+id/btnbuscar"
+                android:layout_width="361dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:width="1dp"
+                android:background="@drawable/gradientbuttonlight"
+                android:text="Buscar"
+                android:textAllCaps="false"
+                android:textColor="@color/colorAccent" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>
