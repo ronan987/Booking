@@ -24,10 +24,11 @@
 
     <ImageView
         android:id="@+id/imageView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="275dp"
+        android:layout_height="250dp"
         android:layout_margin="80dp"
-        app:srcCompat="@drawable/logobooking" />
+        android:tint="@color/colorLight"
+        app:srcCompat="@drawable/ic_person" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"

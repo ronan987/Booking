@@ -2,12 +2,14 @@ package com.example.booking;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
@@ -15,6 +17,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -47,7 +51,10 @@ import java.util.List;
  * Use the {@link MapaFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MapaFragment extends Fragment implements OnMapReadyCallback {
+public class MapaFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener,
+        GoogleMap.OnMyLocationClickListener {
+
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -95,7 +102,30 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
+        View view;
+        Button buscar;
+        Button buscar2;
+
         View v = inflater.inflate( R.layout.fragment_mapa,container,false );
+        buscar = v.findViewById( R.id.buscarbarra );
+        buscar2 = v.findViewById( R.id.buscarboton );
+
+        buscar.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent( getActivity(),MainActivity.class );
+                startActivity( intent );
+            }
+        } );
+
+        buscar2.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent( getActivity(),RegistroActivity.class );
+                startActivity( intent );
+            }
+        } );
+
 
         SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager()
                 .findFragmentById( R.id.map );
@@ -173,7 +203,12 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback {
 
             return;
         }
-
+        map.getUiSettings().setZoomControlsEnabled( false );
+        LatLng popayan = new LatLng( 2.441924,-76.606339 );
+        map.setOnMyLocationButtonClickListener( this );
+        map.setOnMyLocationClickListener( this );
+        map.getUiSettings().setMyLocationButtonEnabled( true );
+        map.moveCamera( CameraUpdateFactory.newLatLngZoom( popayan,15 ) );
         map.setMyLocationEnabled( true );
         map.setOnMyLocationChangeListener( new GoogleMap.OnMyLocationChangeListener() {
             @Override
@@ -188,7 +223,7 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback {
 
                     LatLng miPosicion = new LatLng( latitudOrigen,longitudOrigen );
 
-                    map.addMarker( new MarkerOptions().position( miPosicion ).title( "Aqui estoy yo" ) );
+                    map.addMarker( new MarkerOptions().position( miPosicion ).title( "esta es mi posicion" ) );
 
                     CameraPosition cameraPosition = new CameraPosition.Builder()
                             .target( new LatLng( latitudOrigen,longitudOrigen ) )      // Sets the center of the map to Mountain View
@@ -290,6 +325,18 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback {
             // other 'case' lines to check for other
             // permissions this app might request.
         }
+    }
+
+    @Override
+    public boolean onMyLocationButtonClick() {
+        Toast.makeText(getContext(), "ubicacion actual", Toast.LENGTH_SHORT).show();
+        return false;
+    }
+
+    @Override
+    public void onMyLocationClick(@NonNull Location location) {
+        Toast.makeText(getContext(), "Current location:\n" + location, Toast.LENGTH_LONG).show();
+
     }
 
 
